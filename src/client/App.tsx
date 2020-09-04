@@ -24,12 +24,31 @@ export const App = () => {
     getQuestions();
   }, [questions]);
 
-  return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
-      <h1>Lucid</h1>
-      <h2>Welcome to UI Team code assessment!</h2>
-    </div>
+  // JSX
+  const welcomeTsx = (
+    <>
+      <h1>Hello!</h1>
+      <h2>Welcome to the Fantastic Lucid Quiz!</h2>
+      <p>
+        <i>
+          Answer trivia questions from a large diverse pool. <br />
+          See your score at the end of the quiz.
+        </i>
+      </p>
+      <button onClick={() => toggleQuizMode(true)}>begin</button>
+    </>
   );
+  const quizJsx = <div>Quiz</div>;
+
+  const appJsx = <div style={appStyles}>{quizMode ? quizJsx : welcomeTsx}</div>;
+
+  return appJsx;
+};
+
+const appStyles: React.CSSProperties = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center", 
+  fontFamily: "sans-serif",
+  color: "#3d4045",
 };
