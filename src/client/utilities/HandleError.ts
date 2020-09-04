@@ -1,4 +1,4 @@
-export const handleError: Error | any = (err: Error) => {
+export const handleError: Function = (err: Error) => {
   console.error(err);
   return err;
 };

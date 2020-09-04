@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Button } from "./Button";
+import { Quiz } from "./Quiz";
 import { handleError } from "./utilities/HandleError";
+
 const { useState, useEffect } = React;
 
 export const App = () => {
@@ -11,7 +13,7 @@ export const App = () => {
   const [quizMode, toggleQuizMode] = useState(false);
 
   // api handling
-  const getQuestions: Array<object> | any = async () => {
+  const getQuestions: Function = async () => {
     try {
       const res = await fetch(questionsApiUrl);
       const questionsJson = await res.json();
@@ -28,8 +30,8 @@ export const App = () => {
   // JSX
   const welcomeTsx = (
     <>
-      <h1>Hello!</h1>
-      <h2 style={{color: "#000"}}>Welcome to the Fantastic Lucid Quiz!</h2>
+      <h1>Hello, there!</h1>
+      <h2 style={{ color: "#000" }}>Welcome to the Fantastic Lucid Quiz!</h2>
       <p>
         <i>
           Answer trivia questions from a large diverse pool. <br />
@@ -39,7 +41,8 @@ export const App = () => {
       <Button text="begin" action={() => toggleQuizMode(true)} />
     </>
   );
-  const quizJsx = <div>Quiz</div>;
+  
+  const quizJsx = <Quiz questions={questions} />;
 
   const appJsx = <div style={appStyles}>{quizMode ? quizJsx : welcomeTsx}</div>;
 
@@ -49,7 +52,7 @@ export const App = () => {
 const appStyles: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
-  alignItems: "center", 
+  alignItems: "center",
   fontFamily: "sans-serif",
   color: "#3d4045",
 };
